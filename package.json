@@ -1,0 +1,26 @@
+{
+  "name": "coupon-management-service",
+  "version": "1.0.0",
+  "description": "E-Commerce Coupon Management System - best coupon selection engine",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node tests/coupon.test.js"
+  },
+  "keywords": [
+    "coupons",
+    "ecommerce",
+    "node",
+    "express"
+  ],
+  "author": "Anshumat",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

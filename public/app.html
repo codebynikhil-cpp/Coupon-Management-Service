@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Coupon Management – Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <img src="assets/logo.png" alt="Coupon Management Logo" class="brand-logo" />
+          <div class="brand-text">
+            <h1>Coupon Management</h1>
+            <p>E‑commerce coupon engine demo</p>
+          </div>
+        </div>
+        <div class="login-status" id="login-status">
+          <span class="badge badge-muted">Not logged in</span>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="panel" id="coupons-panel">
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <h2>
+                <span class="icon-badge">🎟️</span>
+                Available Coupons
+              </h2>
+              <span class="coupon-count" id="coupon-count"></span>
+            </div>
+            <button id="refresh-coupons" class="btn btn-ghost btn-sm">
+              <span>↻</span> Refresh
+            </button>
+          </div>
+          <div id="coupons-list" class="coupon-list">
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <p class="muted">Loading coupons...</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="best-coupon-panel">
+          <div class="panel-header">
+            <div>
+              <h2>
+                <span class="icon-badge">⚡</span>
+                Best Coupon Simulator
+              </h2>
+              <p class="panel-subtitle">
+                Provide basic user context and cart summary to see which coupon
+                would be applied.
+              </p>
+            </div>
+          </div>
+
+          <form id="best-coupon-form" class="form form-grid">
+            <div class="form-column">
+              <div class="section-header">
+                <h3>
+                  <span class="section-icon">👤</span>
+                  User Context
+                </h3>
+              </div>
+              <div class="form-group">
+                <label for="user-tier">
+                  <span class="label-icon">⭐</span>
+                  User Tier
+                </label>
+                <select id="user-tier" name="userTier">
+                  <option value="NEW">NEW</option>
+                  <option value="REGULAR">REGULAR</option>
+                  <option value="GOLD">GOLD</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="country">
+                  <span class="label-icon">🌍</span>
+                  Country Code
+                </label>
+                <input id="country" name="country" type="text" value="IN" placeholder="e.g., IN, US" />
+              </div>
+              <div class="form-group">
+                <label for="lifetime-spend">
+                  <span class="label-icon">💰</span>
+                  Lifetime Spend (₹)
+                </label>
+                <input
+                  id="lifetime-spend"
+                  name="lifetimeSpend"
+                  type="number"
+                  min="0"
+                  value="0"
+                  placeholder="0"
+                />
+              </div>
+            </div>
+
+            <div class="form-column">
+              <div class="section-header">
+                <h3>
+                  <span class="section-icon">🛒</span>
+                  Cart Details
+                </h3>
+              </div>
+              <div class="form-group">
+                <label for="cart-total">
+                  <span class="label-icon">₹</span>
+                  Cart Value (₹)
+                </label>
+                <input
+                  id="cart-total"
+                  name="cartTotal"
+                  type="number"
+                  min="0"
+                  value="2500"
+                  placeholder="2500"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cart-categories">
+                  <span class="label-icon">📦</span>
+                  Categories (comma-separated)
+                </label>
+                <input
+                  id="cart-categories"
+                  name="cartCategories"
+                  type="text"
+                  value="electronics,fashion"
+                  placeholder="electronics,fashion"
+                />
+              </div>
+              <div class="form-group">
+                <label for="items-count">
+                  <span class="label-icon">🔢</span>
+                  Total Items (qty)
+                </label>
+                <input
+                  id="items-count"
+                  name="itemsCount"
+                  type="number"
+                  min="1"
+                  value="3"
+                  placeholder="3"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary btn-compute">
+                <span>✨</span>
+                Compute Best Coupon
+              </button>
+              <p class="error-text" id="best-error"></p>
+            </div>
+          </form>
+
+          <div id="best-result" class="best-result muted">
+            <div class="result-placeholder">
+              <span class="result-icon">💡</span>
+              <p>Fill the form and click "Compute Best Coupon" to see the result.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>Built for the "Coupon Management" assignment</span>
+        <span class="footer-separator">•</span>
+        <span>E-commerce Coupon Engine</span>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+

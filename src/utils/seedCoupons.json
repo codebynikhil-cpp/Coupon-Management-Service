@@ -1,0 +1,44 @@
+[
+  {
+    "code": "WELCOME100",
+    "description": "Flat ₹100 off for new users on first order",
+    "discountType": "FLAT",
+    "discountValue": 100,
+    "startDate": "2024-01-01T00:00:00.000Z",
+    "endDate": "2026-12-31T23:59:59.000Z",
+    "usageLimitPerUser": 1,
+    "eligibility": {
+      "allowedUserTiers": ["NEW"],
+      "firstOrderOnly": true,
+      "minCartValue": 500
+    }
+  },
+  {
+    "code": "FESTIVE10",
+    "description": "10% off on electronics and fashion",
+    "discountType": "PERCENT",
+    "discountValue": 10,
+    "maxDiscountAmount": 500,
+    "startDate": "2024-01-01T00:00:00.000Z",
+    "endDate": "2026-12-31T23:59:59.000Z",
+    "eligibility": {
+      "applicableCategories": ["electronics", "fashion"],
+      "minCartValue": 1000
+    }
+  },
+  {
+    "code": "GOLD20",
+    "description": "20% off for GOLD users up to ₹1000",
+    "discountType": "PERCENT",
+    "discountValue": 20,
+    "maxDiscountAmount": 1000,
+    "startDate": "2024-01-01T00:00:00.000Z",
+    "endDate": "2026-12-31T23:59:59.000Z",
+    "eligibility": {
+      "allowedUserTiers": ["GOLD"],
+      "minLifetimeSpend": 5000,
+      "minOrdersPlaced": 3
+    }
+  }
+]
+
