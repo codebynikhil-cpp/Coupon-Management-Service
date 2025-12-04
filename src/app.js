@@ -7,6 +7,9 @@ const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 
+// Define public directory path
+const publicDir = path.join(__dirname, "../public");
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -16,7 +19,7 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/auth", authRoutes);
 
 // Static frontend
-app.use(express.static("../public"));
+app.use(express.static(publicDir));
 
 // Health Check
 app.get("/health", (req, res) => {
@@ -25,7 +28,7 @@ app.get("/health", (req, res) => {
 
 // Catch-all for SPA
 app.get("*", (req, res) => {
-  res.sendFile(path.join(publicDir, "index.html"));
+  res.sendFile(path.join(publicDir, "app.html"));
 });
 
 module.exports = app;
