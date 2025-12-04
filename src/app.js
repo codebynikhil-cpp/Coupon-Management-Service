@@ -16,8 +16,7 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/auth", authRoutes);
 
 // Static frontend
-const publicDir = path.join(__dirname, "..", "frontend", "dist");
-app.use(express.static(publicDir));
+app.use(express.static("../public"));
 
 // Health Check
 app.get("/health", (req, res) => {
