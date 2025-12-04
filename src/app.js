@@ -20,7 +20,7 @@ try {
 }
 
 // Static frontend
-const publicDir = path.join(__dirname, "..", "frontend", "dist");
+const publicDir = path.join(process.cwd(), "frontend", "dist");
 app.use(express.static(publicDir));
 
 // Health Check
