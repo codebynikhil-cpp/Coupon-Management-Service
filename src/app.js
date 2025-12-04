@@ -16,9 +16,13 @@ console.log("Directory exists:", fs.existsSync(publicDir));
 app.use(cors());
 app.use(express.json());
 
-// API Routes
-app.use("/api/coupons", couponRoutes);
-app.use("/api/auth", authRoutes);
+// API Routes - with error handling
+try {
+  app.use("/api/coupons", couponRoutes);
+  app.use("/api/auth", authRoutes);
+} catch (err) {
+  console.error("Error loading routes:", err);
+}
 
 // Static frontend
 app.use(express.static(publicDir));
@@ -31,12 +35,18 @@ app.get("/health", (req, res) => {
 // Catch-all for SPA
 app.get("*", (req, res) => {
   const filePath = path.join(publicDir, "app.html");
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error("Error serving app.html:", err);
-      res.status(500).send("Internal Server Error");
-    }
-  });
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    console.warn("app.html not found at:", filePath);
+    res.status(404).json({ error: "Frontend not found" });
+  }
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error("Global error:", err);
+  res.status(500).json({ error: err.message || "Internal Server Error" });
 });
 
 module.exports = app;
