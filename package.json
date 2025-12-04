@@ -5,8 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "node tests/coupon.test.js"
+    "dev": "nodemon src/server.js"
   },
   "keywords": [
     "coupons",
@@ -18,13 +17,12 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "joi": "^18.0.2"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   }
 }
