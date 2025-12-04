@@ -20,7 +20,28 @@ try {
 }
 
 // Static frontend
-const publicDir = path.join(process.cwd(), "frontend", "dist");
+const fs = require("fs");
+// Try to locate the frontend/dist directory
+const possiblePaths = [
+  path.join(process.cwd(), "frontend", "dist"),
+  path.join(__dirname, "..", "frontend", "dist"),
+  path.join(__dirname, "frontend", "dist"),
+  path.join(process.cwd(), "dist")
+];
+
+let publicDir = possiblePaths.find(p => fs.existsSync(p));
+
+if (!publicDir) {
+  console.error("CRITICAL: Frontend build directory not found!");
+  console.error("Searched paths:", possiblePaths);
+  console.error("Current Directory:", process.cwd());
+  console.error("__dirname:", __dirname);
+  // Fallback to avoid crash, but will 404
+  publicDir = path.join(process.cwd(), "frontend", "dist");
+} else {
+  console.log("Serving frontend from:", publicDir);
+}
+
 app.use(express.static(publicDir));
 
 // Health Check
