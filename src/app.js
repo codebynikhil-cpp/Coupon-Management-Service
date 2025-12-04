@@ -16,12 +16,17 @@ app.use("/api/coupons", couponRoutes);
 app.use("/api/auth", authRoutes);
 
 // Static frontend
-const publicDir = path.join(__dirname, "..", "public");
+const publicDir = path.join(__dirname, "..", "frontend", "dist");
 app.use(express.static(publicDir));
 
 // Health Check
 app.get("/health", (req, res) => {
   res.json({ status: "OK", service: "Coupon Management Service" });
+});
+
+// Catch-all for SPA
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicDir, "index.html"));
 });
 
 module.exports = app;
