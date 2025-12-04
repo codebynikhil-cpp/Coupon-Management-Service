@@ -1,16 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
 
 const couponRoutes = require("./routes/coupon.routes");
 const authRoutes = require("./routes/auth.routes");
 
 const app = express();
-const publicDir = path.join(__dirname, "../public");
-
-console.log("Public directory path:", publicDir);
-console.log("Directory exists:", fs.existsSync(publicDir));
 
 // Middleware
 app.use(cors());
@@ -25,6 +20,7 @@ try {
 }
 
 // Static frontend
+const publicDir = path.join(__dirname, "..", "frontend", "dist");
 app.use(express.static(publicDir));
 
 // Health Check
@@ -34,13 +30,7 @@ app.get("/health", (req, res) => {
 
 // Catch-all for SPA
 app.get("*", (req, res) => {
-  const filePath = path.join(publicDir, "app.html");
-  if (fs.existsSync(filePath)) {
-    res.sendFile(filePath);
-  } else {
-    console.warn("app.html not found at:", filePath);
-    res.status(404).json({ error: "Frontend not found" });
-  }
+  res.sendFile(path.join(publicDir, "index.html"));
 });
 
 // Global error handler
