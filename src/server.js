@@ -11,14 +11,3 @@ if (process.env.NODE_ENV !== "production") {
 
 // For Vercel serverless
 module.exports = app;
-
-// package.json
-{
-  "engines": {
-    "node": "18.x"
-  },
-  "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
-  }
-}
